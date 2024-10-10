@@ -8,6 +8,7 @@ use App\Http\Requests\Book\UpdateRequest;
 use App\Http\Resources\Book as ResourcesBook;
 use App\Models\Book;
 use App\Repositories\BookRepositoryInterface;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class BookController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $paginate = $this->repository->paginate(function ($query) use ($request) {
+        $paginate = $this->repository->paginate(function (Builder $query) use ($request) {
             if ($request->query('search')) {
                 $query->where('title', 'like', '%' . $request->query('search') . '%');
                 $query->orWhere('description', 'like', '%' . $request->query('search') . '%');

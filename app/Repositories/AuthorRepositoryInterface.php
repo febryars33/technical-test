@@ -2,7 +2,18 @@
 
 namespace App\Repositories;
 
-interface AuthorRepositoryInterface
+use App\Bases\Repositories\Interface\BaseRepositoryInterface;
+use Closure;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+
+interface AuthorRepositoryInterface extends BaseRepositoryInterface
 {
-   // Extend with your methods
+    /**
+     * Retrieve a list of books with pagination, filtered by search.
+     *
+     * @param int  $id
+     * @param Closure|null  $callback
+     * @return LengthAwarePaginator
+     */
+    public function bookRelationPaginate(int $id, ?Closure $callback = null): LengthAwarePaginator;
 }
