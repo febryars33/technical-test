@@ -24,7 +24,9 @@ class BookController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $paginate = $this->repository->paginate($request);
+        $paginate = $this->repository->paginate(function ($query) use ($request) {
+            $query->where('title', 'like', '%' . $request->query('search') . '%');
+        });
 
         $paginate->getCollection()->transform(function (Book $book) {
             return new ResourcesBook($book);

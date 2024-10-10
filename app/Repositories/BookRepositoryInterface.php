@@ -2,10 +2,9 @@
 
 namespace App\Repositories;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
+use App\Bases\Repositories\Interface\BaseRepositoryInterface;
 
-interface BookRepositoryInterface
+interface BookRepositoryInterface extends BaseRepositoryInterface
 {
-    public function paginate(Request $request): LengthAwarePaginator;
+    //
 }
