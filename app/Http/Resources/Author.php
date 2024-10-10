@@ -18,7 +18,8 @@ class Author extends JsonResource
             'id'            =>  $this->id,
             'name'          =>  $this->name,
             'bio'           =>  $this->bio,
-            'birth_date'    =>  $this->birth_date->format('d-m-Y')
+            'birth_date'    =>  $this->birth_date->format('d-m-Y'),
+            'books'         =>  $this->when($this->relationLoaded('books'), fn() => Book::collection($this->books)),
         ];
     }
 }

@@ -2,9 +2,11 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Bases\Repositories\BaseRepository;
 use App\Models\Author;
 use App\Repositories\AuthorRepositoryInterface;
-use TimWassenburg\RepositoryGenerator\Repository\BaseRepository;
+use Closure;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
  * Class AuthorRepository.
@@ -12,12 +14,32 @@ use TimWassenburg\RepositoryGenerator\Repository\BaseRepository;
 class AuthorRepository extends BaseRepository implements AuthorRepositoryInterface
 {
     /**
-     * UserRepository constructor.
+     * Author Repository constructor.
      *
      * @param Author $model
      */
     public function __construct(Author $model)
     {
         parent::__construct($model);
+    }
+
+    /**
+     * Retrieve a list of books with pagination, filtered by search.
+     *
+     * @param int  $id
+     * @param Closure|null  $callback
+     * @return LengthAwarePaginator
+     */
+    public function bookRelationPaginate(int $id, ?Closure $callback = null): LengthAwarePaginator
+    {
+        $author = $this->find($id, ['books']);
+
+        $books = $author->books();
+
+        if ($callback instanceof Closure) {
+            $callback($books);
+        }
+
+        return $books->paginate(intval(request()->query('per_page')));
     }
 }

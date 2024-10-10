@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class BookControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     /**
      * @return void
