@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Data\BookData;
 use App\Http\Requests\Book\StoreRequest;
 use App\Http\Requests\Book\UpdateRequest;
 use App\Http\Resources\Book as ResourcesBook;
@@ -43,12 +44,7 @@ class BookController extends Controller
      */
     public function store(StoreRequest $request): JsonResponse
     {
-        return $this->response(new ResourcesBook($this->repository->create([
-            'author_id' =>  $request->validated('author_id'),
-            'title'     =>  $request->validated('title'),
-            'description'     =>  $request->validated('description'),
-            'publish_date'     =>  $request->validated('publish_date')
-        ])), __('Data has been created'));
+        return $this->response(new ResourcesBook($this->repository->create(BookData::from($request)->all())), __('Data has been created'));
     }
 
     /**
@@ -71,12 +67,7 @@ class BookController extends Controller
      */
     public function update(UpdateRequest $request, string $id): JsonResponse
     {
-        $update = $this->repository->update((int) $id, [
-            'author_id' =>  $request->validated('author_id'),
-            'title'     =>  $request->validated('title'),
-            'description'     =>  $request->validated('description'),
-            'publish_date'     =>  $request->validated('publish_date')
-        ]);
+        $update = $this->repository->update((int) $id, BookData::from($request)->all());
 
         return $this->response($update, __('Data has been updated'));
     }
