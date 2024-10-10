@@ -28,6 +28,7 @@ class BookController extends Controller
         $paginate = $this->repository->paginate(function ($query) use ($request) {
             if ($request->query('search')) {
                 $query->where('title', 'like', '%' . $request->query('search') . '%');
+                $query->orWhere('description', 'like', '%' . $request->query('search') . '%');
             }
         });
 
