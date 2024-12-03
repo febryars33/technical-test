@@ -10,10 +10,6 @@ interface AuthorRepositoryInterface extends BaseRepositoryInterface
 {
     /**
      * Retrieve a list of books with pagination, filtered by search.
-     *
-     * @param int  $id
-     * @param Closure|null  $callback
-     * @return LengthAwarePaginator
      */
     public function bookRelationPaginate(int $id, ?Closure $callback = null): LengthAwarePaginator;
 }

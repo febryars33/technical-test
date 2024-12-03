@@ -20,16 +20,13 @@ class BookController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @param Request  $request
-     * @return JsonResponse
      */
     public function index(Request $request): JsonResponse
     {
         $paginate = $this->repository->paginate(function (Builder $query) use ($request) {
             if ($request->query('search')) {
-                $query->where('title', 'like', '%' . $request->query('search') . '%');
-                $query->orWhere('description', 'like', '%' . $request->query('search') . '%');
+                $query->where('title', 'like', '%'.$request->query('search').'%');
+                $query->orWhere('description', 'like', '%'.$request->query('search').'%');
             }
         });
 
@@ -42,9 +39,6 @@ class BookController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param StoreRequest  $request
-     * @return JsonResponse
      */
     public function store(StoreRequest $request): JsonResponse
     {
@@ -53,9 +47,6 @@ class BookController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param string  $id
-     * @return JsonResponse
      */
     public function show(string $id): JsonResponse
     {
@@ -64,10 +55,6 @@ class BookController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param UpdateRequest  $request
-     * @param string  $id
-     * @return JsonResponse
      */
     public function update(UpdateRequest $request, string $id): JsonResponse
     {
@@ -78,9 +65,6 @@ class BookController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param string  $id
-     * @return JsonResponse
      */
     public function destroy(string $id): JsonResponse
     {

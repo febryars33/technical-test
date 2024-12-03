@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Author;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,9 +17,9 @@ class AuthorFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'  =>    $this->faker->name(),
-            'bio'   =>    $this->faker->sentence(),
-            'birth_date'   =>    $this->faker->date(),
+            'name' => $this->faker->name(),
+            'bio' => $this->faker->sentence(),
+            'birth_date' => $this->faker->date(),
         ];
     }
 }

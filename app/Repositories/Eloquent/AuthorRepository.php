@@ -15,8 +15,6 @@ class AuthorRepository extends BaseRepository implements AuthorRepositoryInterfa
 {
     /**
      * Author Repository constructor.
-     *
-     * @param Author $model
      */
     public function __construct(Author $model)
     {
@@ -25,10 +23,6 @@ class AuthorRepository extends BaseRepository implements AuthorRepositoryInterfa
 
     /**
      * Retrieve a list of books with pagination, filtered by search.
-     *
-     * @param int  $id
-     * @param Closure|null  $callback
-     * @return LengthAwarePaginator
      */
     public function bookRelationPaginate(int $id, ?Closure $callback = null): LengthAwarePaginator
     {
