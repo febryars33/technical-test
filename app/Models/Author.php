@@ -29,8 +29,6 @@ class Author extends Model
 
     /**
      * Get all of the books for the Author
-     *
-     * @return HasMany
      */
     public function books(): HasMany
     {

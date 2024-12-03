@@ -21,15 +21,12 @@ class AuthorController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @param Request  $request
-     * @return JsonResponse
      */
     public function index(Request $request): JsonResponse
     {
         $paginate = $this->repository->paginate(function (Builder $query) use ($request) {
             if ($request->query('search')) {
-                $query->where('name', 'like', '%' . $request->query('search') . '%');
+                $query->where('name', 'like', '%'.$request->query('search').'%');
             }
         });
 
@@ -42,9 +39,6 @@ class AuthorController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param StoreRequest  $request
-     * @return JsonResponse
      */
     public function store(StoreRequest $request): JsonResponse
     {
@@ -53,11 +47,8 @@ class AuthorController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param string  $id
-     * @return JsonResponse
      */
-    public function show(string $id)
+    public function show(string $id): JsonResponse
     {
         return $this->response(new ResourcesAuthor($this->repository->find((int) $id)));
     }
@@ -65,11 +56,9 @@ class AuthorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateRequest  $request
-     * @param string  $id
-     * @return JsonResponse
+     * @param  UpdateRequest  $request
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): JsonResponse
     {
         $update = $this->repository->update((int) $id, AuthorData::from($request)->all());
 
@@ -78,11 +67,8 @@ class AuthorController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param string  $id
-     * @return JsonResponse
      */
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
         $delete = $this->repository->delete($id);
 
@@ -91,16 +77,13 @@ class AuthorController extends Controller
 
     /**
      * Retrieve all books by a specific author.
-     *
-     * @param string  $id
-     * @return JsonResponse
      */
     public function books(Request $request, string $id): JsonResponse
     {
         $paginate = $this->repository->bookRelationPaginate((int) $id, function ($query) use ($request) {
             if ($request->query('search')) {
-                $query->where('title', 'like', '%' . $request->query('search') . '%');
-                $query->orWhere('description', 'like', '%' . $request->query('search') . '%');
+                $query->where('title', 'like', '%'.$request->query('search').'%');
+                $query->orWhere('description', 'like', '%'.$request->query('search').'%');
             }
         });
 

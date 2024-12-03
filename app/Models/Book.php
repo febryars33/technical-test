@@ -32,8 +32,6 @@ class Book extends Model
 
     /**
      * Get the author that owns the Book
-     *
-     * @return BelongsTo
      */
     public function author(): BelongsTo
     {

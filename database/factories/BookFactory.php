@@ -19,7 +19,7 @@ class BookFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
-            'publish_date' => $this->faker->date()
+            'publish_date' => $this->faker->date(),
         ];
     }
 }

@@ -23,22 +23,22 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'author_id' =>  [
+            'author_id' => [
                 'required',
-                'exists:' . Author::class . ',id'
+                'exists:'.Author::class.',id',
             ],
-            'title' =>  [
+            'title' => [
                 'required',
-                'string'
+                'string',
             ],
-            'description'   =>  [
+            'description' => [
                 'nullable',
-                'string'
+                'string',
             ],
-            'publish_date'  =>  [
+            'publish_date' => [
                 'required',
-                'date'
-            ]
+                'date',
+            ],
         ];
     }
 }

@@ -13,8 +13,6 @@ class BaseRepository extends Repository implements BaseRepositoryInterface
 {
     /**
      * Get a new query builder instance for the model.
-     *
-     * @return Builder
      */
     public function query(): Builder
     {
@@ -24,8 +22,6 @@ class BaseRepository extends Repository implements BaseRepositoryInterface
     /**
      * Delete the specified resource from storage.
      *
-     * @param int $id
-     * @return bool|null
      *
      * @throws LogicException
      */
@@ -36,9 +32,6 @@ class BaseRepository extends Repository implements BaseRepositoryInterface
 
     /**
      * Retrieve a list of books with pagination.
-     *
-     * @param Closure|null  $callback
-     * @return LengthAwarePaginator
      */
     public function paginate(?Closure $callback = null): LengthAwarePaginator
     {

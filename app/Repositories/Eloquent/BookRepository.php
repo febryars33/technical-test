@@ -13,8 +13,6 @@ class BookRepository extends BaseRepository implements BookRepositoryInterface
 {
     /**
      * Book Repository constructor.
-     *
-     * @param Book $model
      */
     public function __construct(Book $model)
     {
